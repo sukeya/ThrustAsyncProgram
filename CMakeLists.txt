@@ -3,8 +3,7 @@ cmake_minimum_required(VERSION 3.27.7)
 # CUDAアーキテクチャを指定する。
 # 最初に設定しないと、プロジェクトが作成できません。
 if(NOT DEFINED CMAKE_CUDA_ARCHITECTURES)
-  # [TODO] 環境に合わせて変更して下さい。
-  set(CMAKE_CUDA_ARCHITECTURES 75)
+  set(CMAKE_CUDA_ARCHITECTURES native)
 endif()
 
 project(my_program VERSION 0.1.0 LANGUAGES CXX CUDA)
@@ -23,12 +22,13 @@ thrust_create_target(Thrust)
 
 # CUDAライブラリを作る。
 add_library(double double.cu)
-# ラムダ式をデバイスコードで使えるようにし、SIMDを無効にする。
-# SIMDの無効化は必要ありませんが、Eigenなど線形代数ライブラリを使う際に必要になります。
 target_compile_options(
   double
   PRIVATE
+    # ラムダ式をデバイスコードで使えるようにする。
     -expt-extended-lambda
+    # SIMDを無効にする。
+    # SIMDの無効化は必要ありませんが、Eigenなど線形代数ライブラリを使う際に必要になります。
     "$<$<COMPILE_LANG_AND_ID:CXX,GNU>:-fno-tree-vectorize>"
     "$<$<COMPILE_LANG_AND_ID:CXX,Clang>:-fno-vectorize>"
 )
