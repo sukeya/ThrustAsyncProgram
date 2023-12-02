@@ -1,0 +1,6 @@
+[submodule "cccl"]
+	path = cccl
+	url = https://github.com/NVIDIA/cccl
+[submodule "thrust"]
+	path = thrust
+	url = https://github.com/NVIDIA/thrust.git
