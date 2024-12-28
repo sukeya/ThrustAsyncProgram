@@ -51,14 +51,14 @@
     {
       "name": "default-build-linux",
       "displayName": "Default",
-      "configurePreset": "x64-debug",
+      "configurePreset": "linux-x64-debug",
       "description": "Vanilla build"
     },
     {
       "name": "verbose-build-linux",
       "displayName": "Verbose Build",
       "description": "Passes -v to Ninja",
-      "configurePreset": "x64-debug",
+      "configurePreset": "linux-x64-debug",
       "nativeToolOptions": [ "-v" ]
     }
   ]
