@@ -33,6 +33,7 @@ thrust::device_event Double(thrust::host_vector<T>& ts) {
   // デバイスからホストへの非同期コピー
   auto copy_back_ts_event = thrust::async::copy(
       thrust::device.after(double_ts_event),
+      thrust::host,
       device_ts.begin(),
       device_ts.end(),
       ts.begin()
